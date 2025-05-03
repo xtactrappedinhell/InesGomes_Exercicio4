@@ -16,6 +16,6 @@ public:
 	// Sets default values for this actor's properties
 	ADoor();
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interface")
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "DoorInteract")
 	void Interact();
 };
