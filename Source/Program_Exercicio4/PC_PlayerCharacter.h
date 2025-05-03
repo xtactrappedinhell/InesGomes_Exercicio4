@@ -8,6 +8,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "InputAction.h"
 #include "InputMappingContext.h"
+#include "CPP_Interact.h"
 #include "PC_PlayerCharacter.generated.h"
 
 /**
@@ -31,6 +32,10 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Movement")
 	UInputAction* Sideways;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Interacted")
+	UInputAction* PlayerInteract;
+
 	void MoveForward(const FInputActionValue& A);
 	void MoveSideways(const FInputActionValue& A);
+	void Interact();
 };

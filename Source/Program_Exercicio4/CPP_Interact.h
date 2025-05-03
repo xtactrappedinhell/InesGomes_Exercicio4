@@ -20,7 +20,8 @@ class PROGRAM_EXERCICIO4_API ICPP_Interact
 {
 	GENERATED_BODY()
 
-	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
-	virtual bool Interact() = 0;
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Interface")
+
+	void Interact();
 };

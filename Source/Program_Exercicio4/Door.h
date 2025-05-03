@@ -4,10 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "CPP_Interact.h"
 #include "Door.generated.h"
 
 UCLASS()
-class PROGRAM_EXERCICIO4_API ADoor : public AActor
+class PROGRAM_EXERCICIO4_API ADoor : public AActor, public ICPP_Interact
 {
 	GENERATED_BODY()
 	
@@ -15,17 +16,6 @@ public:
 	// Sets default values for this actor's properties
 	ADoor();
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
-private:
-	UPROPERTY(VisibleAnywhere, Category = "Mesh")
-	class UStaticMeshComponent* DoorFrame;
-	UPROPERTY(VisibleAnywhere, Category = "Mesh")
-	UStaticMeshComponent* Door;
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interface")
+	void Interact();
 };

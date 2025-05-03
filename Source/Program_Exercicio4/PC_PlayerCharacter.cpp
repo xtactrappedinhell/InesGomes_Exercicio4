@@ -37,6 +37,26 @@ void APC_PlayerCharacter::MoveSideways(const FInputActionValue& A)
 	}
 }
 
+void APC_PlayerCharacter::Interact()
+{
+	APawn* Interacted = GetPawn();
+	FHitResult Hit;
+	FVector Beginning = Interacted->GetActorLocation();
+	FVector End = Interacted->GetActorForwardVector()*500;
+	FCollisionQueryParams Collision;
+	Collision.AddIgnoredActor(Interacted);
+	
+	if (GetWorld()->LineTraceSingleByChannel(Hit, Beginning, End, ECC_Visibility, Collision))
+	{
+		AActor* Target = Hit.GetActor();
+
+		if (Target&&Target->GetClass()->ImplementsInterface(UCPP_Interact::StaticClass()))
+		{
+			ICPP_Interact::Execute_Interact(Target);
+		}
+	}
+}
+
 void APC_PlayerCharacter::SetupInputComponent()
 {
 	Super::SetupInputComponent();
@@ -44,5 +64,6 @@ void APC_PlayerCharacter::SetupInputComponent()
 	{
 		Input->BindAction(Forward, ETriggerEvent::Triggered, this, &APC_PlayerCharacter::MoveForward);
 		Input->BindAction(Sideways, ETriggerEvent::Triggered, this, &APC_PlayerCharacter::MoveSideways);
+		Input->BindAction(PlayerInteract, ETriggerEvent::Triggered, this, &APC_PlayerCharacter::Interact);
 	}
 }
