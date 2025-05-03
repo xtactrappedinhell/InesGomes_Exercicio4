@@ -23,4 +23,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+private:
+	UPROPERTY(VisibleAnywhere, Category = "Mesh")
+	class UStaticMeshComponent* DoorFrame;
+	UPROPERTY(VisibleAnywhere, Category = "Mesh")
+	UStaticMeshComponent* Door;
 };
