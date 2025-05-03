@@ -4,7 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "EnhancedInputComponent.h"
+#include "EnhancedInputSubsystems.h"
 #include "PlayerCharacter.generated.h"
+
 
 UCLASS()
 class PROGRAM_EXERCICIO4_API APlayerCharacter : public ACharacter
@@ -27,12 +30,6 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 protected:
-	UPROPERTY(EditAnywhere)
-	class UCameraComponent* Camera;
-
-	void MoveFoward(float InputValue);
-	void MoveSideways(float InputValue);
-	
-	void TurnCameraX(float InputValue);
-	void TurnCameraY(float InputValue);
+	UPROPERTY(EditDefaultsOnly, Category="PlayerInteractions")
+	UInputAction* PlayerInteract;
 };
